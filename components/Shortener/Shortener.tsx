@@ -27,7 +27,11 @@ export default function Shortener({ onResult }: ShortenerProps) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ longUrl, slug }),
             });
-            if (!res.ok) throw new Error(await res.text());
+            if (!res.ok) {
+                const message = await res.text();
+                onResult({ type: "error", message: `Failed to compact: ${message}` });
+                return;
+            }
             const { url } = await res.json();
             onResult({ type: "success", url });
         } catch (e) {
