@@ -50,7 +50,6 @@ export default function Shortener({ onResult }: ShortenerProps) {
                     placeholder="https://example.com/long/url/"
                     value={longUrl}
                     onChange={e => setLongUrl(e.target.value)}
-                    onKeyDown={e => e.key === "Enter" && handleClick()}
                 />
             </StyledDiv>
 
