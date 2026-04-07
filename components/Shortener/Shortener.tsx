@@ -50,6 +50,7 @@ export default function Shortener({ onResult }: ShortenerProps) {
                     placeholder="https://example.com/long/url/"
                     value={longUrl}
                     onChange={e => setLongUrl(e.target.value)}
+                    onKeyDown={e => e.key === "Enter" && handleClick()}
                 />
             </StyledDiv>
 
@@ -64,6 +65,7 @@ export default function Shortener({ onResult }: ShortenerProps) {
                         placeholder="your-slug"
                         value={slug}
                         onChange={e => setSlug(e.target.value)}
+                        onKeyDown={e => e.key === "Enter" && handleClick()}
                     />
                     <StyledButton onClick={handleClick}>Click to Compact</StyledButton>
                 </StyledSlugDiv>
