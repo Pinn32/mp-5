@@ -59,10 +59,10 @@ export default function Output({ result }: { result: Result }) {
                 (<>
                     <CopyButton onClick={handleCopy}>{copied ? "Copied!" : "Copy"}</CopyButton>
                     <p>Your compacted URL:</p>
-                    <p id={`output-url`}>{result.url}</p>
+                    <OutputUrl>{result.url}</OutputUrl>
                 </>)
                     :
-                (<OutputUrl>{result.message}</OutputUrl>)
+                (<p>{result.message}</p>)
             }
         </StyledDiv>
     )
