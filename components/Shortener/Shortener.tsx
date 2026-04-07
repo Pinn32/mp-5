@@ -30,7 +30,21 @@ export default function Shortener({ onResult }: ShortenerProps) {
     const [longUrl, setLongUrl] = useState("");
     const [slug, setSlug] = useState("");
 
+    function isValidUrl(input: string): boolean {
+        const normalized = /^https?:\/\//i.test(input) ? input : "https://" + input;
+        try {
+            const { hostname } = new URL(normalized);
+            return hostname.includes(".");
+        } catch {
+            return false;
+        }
+    }
+
     async function handleClick() {
+        if (!isValidUrl(longUrl)) {
+            onResult({ type: "error", message: humanizeError("Invalid URL") });
+            return;
+        }
         try {
             const res = await fetch("/api/compact", {
                 method: "POST",
