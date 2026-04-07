@@ -16,6 +16,16 @@ interface ShortenerProps {
     onResult: (result: Result) => void;
 }
 
+const API_ERROR_MESSAGES: Record<string, string> = {
+    "longUrl and slug are required": "Long URL and slug are required.",
+    "Failed to save to database": "Something went wrong. Please try again.",
+    "Invalid URL": "Please enter a valid URL.",
+};
+
+function humanizeError(raw: string): string {
+    return API_ERROR_MESSAGES[raw] ?? "An unexpected error occurred. Please try again.";
+}
+
 export default function Shortener({ onResult }: ShortenerProps) {
     const [longUrl, setLongUrl] = useState("");
     const [slug, setSlug] = useState("");
@@ -28,14 +38,14 @@ export default function Shortener({ onResult }: ShortenerProps) {
                 body: JSON.stringify({ longUrl, slug }),
             });
             if (!res.ok) {
-                const message = await res.text();
-                onResult({ type: "error", message: `Failed to compact: ${message}` });
+                const { error } = await res.json();
+                onResult({ type: "error", message: humanizeError(error) });
                 return;
             }
             const { url } = await res.json();
             onResult({ type: "success", url });
         } catch (e) {
-            onResult({ type: "error", message: `Failed to compact: ${e instanceof Error ? e.message : "Unknown error"}` });
+            onResult({ type: "error", message: "Could not reach the server. Check your connection and try again." });
         }
     }
 
