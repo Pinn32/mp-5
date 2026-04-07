@@ -9,10 +9,6 @@ const StyledDiv = styled.div`
     width: 75vw;
     padding: 2% 3%;
     
-    & #output-url {
-        color: var(--light-green)
-    }
-    
     @media screen and (max-width: 800px) {
         width: 85vw;
     }
@@ -35,6 +31,10 @@ const CopyButton = styled.button`
     &:active {
         background-color: seagreen;
     }
+`;
+
+const OutputUrl = styled.p`
+    color: var(--light-green);
 `;
 
 type Result =
@@ -62,7 +62,7 @@ export default function Output({ result }: { result: Result }) {
                     <p id={`output-url`}>{result.url}</p>
                 </>)
                     :
-                (<p>{result.message}</p>)
+                (<OutputUrl>{result.message}</OutputUrl>)
             }
         </StyledDiv>
     )

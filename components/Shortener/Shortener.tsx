@@ -59,6 +59,7 @@ export default function Shortener({ onResult }: ShortenerProps) {
             const { url } = await res.json();
             onResult({ type: "success", url });
         } catch (e) {
+            console.error(e);
             onResult({ type: "error", message: "Could not reach the server. Check your connection and try again." });
         }
     }
@@ -82,7 +83,7 @@ export default function Shortener({ onResult }: ShortenerProps) {
                     Enter a slug for your short URL:
                 </label>
                 <StyledSlugDiv>
-                    <p>https://my-alias.vercel.app/</p>
+                    <p>https://url-to.vercel.app/</p>
                     <StyledFlexInput
                         id="slug"
                         placeholder="your-slug"
