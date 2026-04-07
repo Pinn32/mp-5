@@ -5,7 +5,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
     const { slug } = await params;
     const entry = await getUrl(slug);
 
-    if (!entry) notFound();
+    if (!entry) return notFound();
 
     redirect(entry.longUrl);
 }
