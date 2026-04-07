@@ -9,7 +9,7 @@ import {
 } from "./ShortenerStyles";
 
 type Result =
-    | { type: "success"; url: string }
+    | { type: "success"; url: string; warning?: string }
     | { type: "error"; message: string };
 
 interface ShortenerProps {
@@ -56,8 +56,8 @@ export default function Shortener({ onResult }: ShortenerProps) {
                 onResult({ type: "error", message: humanizeError(body.error) });
                 return;
             }
-            const { url } = await res.json();
-            onResult({ type: "success", url });
+            const { url, warning } = await res.json();
+            onResult({ type: "success", url, warning });
         } catch (e) {
             console.error(e);
             onResult({ type: "error", message: "Could not reach the server. Check your connection and try again." });

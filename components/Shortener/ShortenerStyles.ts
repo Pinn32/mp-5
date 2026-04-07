@@ -5,7 +5,7 @@ export const StyledSection = styled.section`
     color: var(--color);
     margin: 0 auto;
     width: 75vw;
-    padding: 2% 3% 3%;
+    padding: 1rem 1.5rem 2rem;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@ export const StyledSection = styled.section`
     }
     
     @media screen and (max-width: 800px) {
-        width: 85vw;
+        width: 90vw;
     }
 `;
 

@@ -2,24 +2,28 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-    position: relative;
     background-color: var(--dark-green);
     margin: 0 auto;
     border-radius: 8px;
     width: 75vw;
-    padding: 2% 3%;
-    
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+
     @media screen and (max-width: 800px) {
-        width: 85vw;
+        width: 90vw;
     }
 `;
 
+const UrlRow = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+`;
+
 const CopyButton = styled.button`
-    position: absolute;
-    top: 0.6rem;
-    right: 0.75rem;
+    flex-shrink: 0;
     padding: 0.2rem 0.6rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     background-color: var(--color);
     color: var(--dark-green);
     border: none;
@@ -38,7 +42,7 @@ const OutputUrl = styled.p`
 `;
 
 type Result =
-    | { type: "success"; url: string }
+    | { type: "success"; url: string; warning?: string }
     | { type: "error"; message: string };
 
 export default function Output({ result }: { result: Result }) {
@@ -57,9 +61,12 @@ export default function Output({ result }: { result: Result }) {
                 result.type === "success"
                     ?
                 (<>
-                    <CopyButton onClick={handleCopy}>{copied ? "Copied!" : "Copy"}</CopyButton>
+                    {result.warning && <p style={{ color: "var(--light-green)", fontStyle: "italic", marginBottom: "0.5rem" }}>{result.warning}</p>}
                     <p>Your compacted URL:</p>
-                    <OutputUrl>{result.url}</OutputUrl>
+                    <UrlRow>
+                        <OutputUrl>{result.url}</OutputUrl>
+                        <CopyButton onClick={handleCopy}>{copied ? "Copied!" : "Copy"}</CopyButton>
+                    </UrlRow>
                 </>)
                     :
                 (<p>{result.message}</p>)

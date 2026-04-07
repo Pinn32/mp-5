@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="57ed13eb-a845-41c8-ad25-fdff824859b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/[slug]/page.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/compact/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/compact/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Output.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Output.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Shortener/Shortener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shortener/Shortener.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shortenUrl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shortenUrl.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +21,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -94,7 +97,8 @@
       <updated>1775501850994</updated>
       <workItem from="1775501852048" duration="3577000" />
       <workItem from="1775508590688" duration="16180000" />
-      <workItem from="1775528751709" duration="5866000" />
+      <workItem from="1775528751709" duration="7341000" />
+      <workItem from="1775575266651" duration="1482000" />
     </task>
     <servers />
   </component>
