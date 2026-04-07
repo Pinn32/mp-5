@@ -52,8 +52,8 @@ export default function Shortener({ onResult }: ShortenerProps) {
                 body: JSON.stringify({ longUrl, slug }),
             });
             if (!res.ok) {
-                const { error } = await res.json();
-                onResult({ type: "error", message: humanizeError(error) });
+                const body = await res.json().catch(() => ({}));
+                onResult({ type: "error", message: humanizeError(body.error) });
                 return;
             }
             const { url } = await res.json();
