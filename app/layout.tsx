@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Quantico } from "next/font/google";
+import { Noto_Sans_SC, Quantico } from "next/font/google";
 import type React from "react";
 import Link from "next/link";
 import "./globals.css";
@@ -11,6 +11,11 @@ const quantico = Quantico({
     weight: ["400", "700"],
     variable: "--font-quantico",
     subsets: ["latin"],
+});
+
+const notoSansSC = Noto_Sans_SC({
+    variable: "--font-noto-sans-sc",
+    preload: false,
 });
 
 // Metadata
@@ -29,7 +34,7 @@ export default async function RootLayout({
 
     return (
         <>
-            <html lang="en" className={`${quantico.variable}`}>
+            <html lang="en" className={`${quantico.variable} ${notoSansSC.variable}`}>
                 <body>
                     <header className="account-bar">
                         {session?.user ? (

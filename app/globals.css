@@ -61,7 +61,7 @@ body {
         font-weight: bold;
     }
     & * {
-        font-family: "Quantico", consolas, monospace, serif;
+        font-family: var(--font-quantico), var(--font-noto-sans-sc), consolas, monospace, serif;
     }
 }
 
