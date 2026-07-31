@@ -36,16 +36,12 @@ export const StyledInput = styled.input`
     display: block;
     box-sizing: border-box;
     border-radius: 4px;
-    border: none;
+    border: 1px solid transparent;
     width: 100%;
     height: 2.25rem;
     padding: 0 0.75rem;
     color: saddlebrown;
     font-size: 1rem;
-    
-    &:focus {
-        outline-color: var(--dark-green);
-    }
     
     &::placeholder {
         color: #9ec1ab;
@@ -86,12 +82,8 @@ export const StyledFlexInput = styled(StyledInput)`
     width: auto;
     min-width: 0;
     border-radius: 4px;
-    border: none;
+    border: 1px solid transparent;
     font-size: 1rem;
-    
-    &:focus {
-        outline-color: var(--dark-green);
-    }
     
     @media screen and (max-width: 800px) {
         flex: initial;

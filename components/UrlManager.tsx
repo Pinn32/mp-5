@@ -42,11 +42,11 @@ export default function UrlManager({ initialName, email, urls }: {
         }
     }
 
-    async function saveUrl(url: ManagedUrl, slug: string, description: string): Promise<boolean> {
+    async function saveUrl(url: ManagedUrl, longUrl: string, slug: string, description: string): Promise<boolean> {
         const response = await fetch(`/api/urls/${url.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ slug, description }),
+            body: JSON.stringify({ longUrl, slug, description }),
         });
         const body = await response.json();
         setUrlMessage(response.ok ? "URL updated." : body.error);
@@ -185,9 +185,10 @@ export default function UrlManager({ initialName, email, urls }: {
 
 function UrlEditor({ url, onSave, onDelete }: {
     url: ManagedUrl;
-    onSave: (url: ManagedUrl, slug: string, description: string) => Promise<boolean>;
+    onSave: (url: ManagedUrl, longUrl: string, slug: string, description: string) => Promise<boolean>;
     onDelete: () => void;
 }) {
+    const [longUrl, setLongUrl] = useState(url.longUrl);
     const [slug, setSlug] = useState(url.slug);
     const [description, setDescription] = useState(url.description);
     const [editing, setEditing] = useState(false);
@@ -197,7 +198,7 @@ function UrlEditor({ url, onSave, onDelete }: {
 
     async function handleSave() {
         if (wordCount > 10) return;
-        if (await onSave(url, slug, description)) setEditing(false);
+        if (await onSave(url, longUrl, slug, description)) setEditing(false);
     }
 
     async function handleCopy() {
@@ -215,11 +216,13 @@ function UrlEditor({ url, onSave, onDelete }: {
     return (
         <article className={`url-item${editing ? " is-editing" : ""}`}>
             <div className="url-summary">
-                <a href={`/${url.slug}`} target="_blank" rel="noreferrer">
-                    {url.description
-                        ? `${url.description} (slug: /${url.slug})`
-                        : `slug: /${url.slug}`}
-                </a>
+                <p className="url-title">
+                    <a href={`/${url.slug}`} target="_blank" rel="noreferrer">
+                        {url.description
+                            ? `${url.description} (slug: /${url.slug})`
+                            : `slug: /${url.slug}`}
+                    </a>
+                </p>
                 {!editing && <button className="row-edit-button" onClick={() => setEditing(true)}>Edit</button>}
                 <button className="row-copy-button" onClick={handleCopy}>{copied ? "Copied!" : "Copy"}</button>
             </div>
@@ -231,8 +234,16 @@ function UrlEditor({ url, onSave, onDelete }: {
                     event.preventDefault();
                     handleSave();
                 }}>
-                    <p className="destination">{url.longUrl}</p>
                     <div className="edit-grid">
+                        <label className="destination-field">
+                            <span className="edit-label-row">Long URL</span>
+                            <input
+                                inputMode="url"
+                                value={longUrl}
+                                onChange={(event) => setLongUrl(event.target.value)}
+                                placeholder="https://example.com/long/url/"
+                            />
+                        </label>
                         <label>
                             <span className="edit-label-row">Slug</span>
                             <input
@@ -263,6 +274,7 @@ function UrlEditor({ url, onSave, onDelete }: {
                     <div className="item-actions">
                         <button type="button" className="danger-button" onClick={onDelete}>Delete</button>
                         <button type="button" className="secondary-button" onClick={() => {
+                            setLongUrl(url.longUrl);
                             setSlug(url.slug);
                             setDescription(url.description);
                             setEditing(false);
