@@ -127,13 +127,56 @@ select {
     width: min(1100px, 100%);
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 0.75rem;
     min-height: 2rem;
     font-size: 0.8rem;
 }
 
-.account-bar > span {
+.profile-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color) !important;
+    font-size: 0.75rem;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+        transform var(--motion-fast) ease-out,
+        color 160ms ease-out;
+}
+
+.profile-link:hover {
+    color: var(--light-green) !important;
+    text-decoration: underline;
+}
+
+.profile-link:active {
+    transform: scale(0.97);
+    transition-duration: 80ms;
+}
+
+.profile-link-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex-shrink: 0;
+}
+
+.account-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.account-controls > span {
     min-width: 0;
     overflow: hidden;
     color: var(--color);
@@ -141,7 +184,7 @@ select {
     white-space: nowrap;
 }
 
-.account-bar form { flex-shrink: 0; }
+.account-controls form { flex-shrink: 0; }
 
 .login-link, .google-button, .secondary-button, .manager button {
     display: inline-flex;
@@ -543,7 +586,13 @@ a {
 
 @media (max-width: 480px) {
     .account-bar { gap: 0.5rem; }
-    .account-bar > span { max-width: calc(100% - 5rem); }
+    .profile-links { gap: 0.3rem; }
+    .profile-link-label { display: none; }
+    .account-controls { gap: 0.5rem; }
+    .account-controls > span {
+        min-width: 10ch;
+        flex-shrink: 0;
+    }
     .manager-heading { align-items: stretch; flex-direction: column; }
     .manager-heading h2 { font-size: 1.1rem; }
     .export-actions { display: grid; grid-template-columns: 1fr 1fr; }
