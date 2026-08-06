@@ -231,7 +231,12 @@ select {
 }
 
 .login-panel h1 { font-size: 2rem; }
-.back-link, .guest-note { font-size: 0.75rem; }
+.back-link {
+    align-self: flex-start;
+    font-size: 0.85rem;
+}
+
+.guest-note { font-size: 0.75rem; }
 .google-button { width: 100%; font-weight: 700; }
 
 .manager {
@@ -586,12 +591,21 @@ a {
 
 @media (max-width: 480px) {
     .account-bar { gap: 0.5rem; }
-    .profile-links { gap: 0.3rem; }
+    .profile-links { gap: 0.5rem; }
+    .profile-link-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
     .profile-link-label { display: none; }
-    .account-controls { gap: 0.5rem; }
+    .account-controls {
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
     .account-controls > span {
-        min-width: 10ch;
+        /* min-width: 10ch; */
+        max-width: 20ch;
         flex-shrink: 0;
+        text-align: left;
     }
     .manager-heading { align-items: stretch; flex-direction: column; }
     .manager-heading h2 { font-size: 1.1rem; }

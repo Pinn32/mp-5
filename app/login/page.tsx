@@ -9,7 +9,7 @@ export default async function LoginPage() {
         <section className="login-panel">
             <Link className="back-link" href="/">Back to shortener</Link>
             <h1>Log in</h1>
-            <p>Use Google to save, describe, rename, and delete your shortened URLs.</p>
+            <p>Log in to save, edit, describe, rename, and delete your shortened URLs.</p>
             <form action={async () => {
                 "use server";
                 await signIn("google", { redirectTo: "/" });
